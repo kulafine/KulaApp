@@ -3,7 +3,7 @@ package appr.kulaf.com.kulaapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Items extends AppCompatActivity {
+public class FoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
