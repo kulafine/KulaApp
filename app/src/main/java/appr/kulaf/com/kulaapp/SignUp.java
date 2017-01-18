@@ -23,6 +23,10 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        username = (EditText)findViewById(R.id.username);
+        email = (EditText) findViewById(R.id.mail);
+        password = (EditText) findViewById(R.id.password);
+
 
     }
 }
