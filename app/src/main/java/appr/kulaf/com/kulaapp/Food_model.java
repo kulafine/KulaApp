@@ -7,14 +7,14 @@ package appr.kulaf.com.kulaapp;
 public class Food_model {
 
     private String name;
-    private String desc;
+
     private String url;
     private String price;
     private String word;
 
-    public Food_model(String name, String desc, String url, String price, String word) {
+    public Food_model(String name, String url, String price, String word) {
         this.name = name;
-        this.desc = desc;
+
         this.url = url;
         this.price = price;
         this.word = word;
@@ -24,9 +24,7 @@ public class Food_model {
         return name;
     }
 
-    public String getDesc() {
-        return desc;
-    }
+
 
     public String getUrl() {
         return url;
