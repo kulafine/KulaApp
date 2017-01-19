@@ -30,7 +30,7 @@ public class Server {
         return server_request;
     }
 
-    public static synchronized Server getServer_instance(){
+    public static synchronized Server getServer_instance(Context context){
         if(server_instance == null){
             server_instance = new Server(context);
         }

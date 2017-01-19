@@ -7,6 +7,20 @@
     android:orientation="vertical"
     tools:context="appr.kulaf.com.kulaapp.MainActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/btnsign"
+        android:layout_marginBottom="100dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FoodsActivity"
+        android:id="@+id/factivity"/>
+
 
 
 
