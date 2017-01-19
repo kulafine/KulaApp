@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -39,6 +41,10 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Fooditem_Holde
         holder.fname.setText(food_model.getName());
         holder.fword.setText(food_model.getWord());
         holder.fprice.setText(food_model.getPrice());
+
+        Picasso.with(context)
+                .load(food_model.getUrl())
+                .into(holder.fimg);
 
     }
 
