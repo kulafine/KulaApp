@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -22,7 +23,7 @@ public class FoodActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private String URL = "";
+    private String URL = "http://192.168.40.215/kulafine/loadJson.php";
     private List<Food_model> foods;
 
 
@@ -64,9 +65,13 @@ public class FoodActivity extends AppCompatActivity {
                                 o.getString("name"),
                                 o.getString("image"),
                                 o.getString("word"),
-                                o.getString("price")
-                        );
+                                o.getString("price"));
+
+                        foods.add(food);
                     }
+
+                    adapter = new FoodAdapter(foods, getApplicationContext());
+                    recyclerView.setAdapter(adapter);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -77,8 +82,13 @@ public class FoodActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(), "No internet Connection", Toast.LENGTH_LONG).show();
+
             }
         });
+
+        Server.getServer_instance(getApplicationContext()).addRequest(stringRequest);
 
     }
 }
