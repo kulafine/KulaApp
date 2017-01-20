@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,8 +39,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
 
         Fooditem fooditem = foods.get(position);
         holder.t_name.setText(fooditem.getName());
-        holder.t_desc.setText(fooditem.getDesc());
+        holder.t_word.setText(fooditem.getWord());
         holder.t_price.setText(fooditem.getPrice());
+
+        Picasso.with(context).load(fooditem.getUrl()).into(holder.t_image);
+
 
     }
 
@@ -48,14 +54,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
 
     public class Food_item_Holder extends RecyclerView.ViewHolder{
 
-        public TextView t_name,t_desc,t_price;
+        public TextView t_name,t_word,t_price;
+        public ImageView t_image;
 
         public Food_item_Holder(View itemView) {
             super(itemView);
 
             t_name = (TextView)itemView.findViewById(R.id.fname);
-            t_desc = (TextView)itemView.findViewById(R.id.fword);
+            t_image = (ImageView)itemView.findViewById(R.id.img);
             t_price = (TextView)itemView.findViewById(R.id.fprice);
+            t_word = (TextView)itemView.findViewById(R.id.fword);
 
         }
     }

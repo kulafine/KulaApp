@@ -59,18 +59,13 @@ public class FoodActivity extends AppCompatActivity {
 
                     for (int i  = 0 ; i < array.length() ; i++){
                         JSONObject object = array.getJSONObject(i);
-                        Fooditem fooditem = new Fooditem(object.getString("name"),object.getString("desc"),object.getString("price"));
+                        Fooditem fooditem = new Fooditem(object.getString("name"),object.getString("image"),object.getString("word"),object.getString("price"));
                         fooditems.add(fooditem);
 
                     }
 
                     adapter = new FoodAdapter(fooditems, getApplicationContext());
                     recyclerView.setAdapter(adapter);
-
-
-
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();
