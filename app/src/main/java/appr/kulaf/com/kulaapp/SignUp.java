@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String Url ="www.google.com ";
+    private static final String Url ="http://192.168.40.215/kulafine/scripts/register.php";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_EMAIL= "email";
     public static final String KEY_PASSWORD="password";
@@ -72,7 +72,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                try {
-                   String result = response.getString("reslut");
+                   String result = response.getString("result");
                    if (result == "200"){
                        Intent intent = new Intent(getApplicationContext(),Login.class);
                        startActivity(intent);
@@ -97,7 +97,7 @@ public class SignUp extends AppCompatActivity {
                 Map<String, String> params = new Hashtable<String, String>();
                 params.put(KEY_USERNAME, EDusername);
                 params.put(KEY_PASSWORD,EDpassword);
-                params.put(KEY_EMAIL,EDpassword);
+                params.put(KEY_EMAIL,EDmail);
                 return params;
             }
         };
