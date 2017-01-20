@@ -1,17 +1,17 @@
 package appr.kulaf.com.kulaapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +32,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
     public Food_item_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        Food_item_Holder food_item_holder = new Food_item_Holder(v, context, foods);
+        Food_item_Holder food_item_holder = new Food_item_Holder(v);
 
         return food_item_holder;
     }
@@ -40,7 +40,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
     @Override
     public void onBindViewHolder(Food_item_Holder holder, int position) {
 
-        Fooditem fooditem = foods.get(position);
+        final Fooditem fooditem = foods.get(position);
         holder.t_name.setText(fooditem.getName());
         holder.t_word.setText(fooditem.getWord());
         holder.t_price.setText(fooditem.getPrice());
@@ -52,6 +52,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
                 .centerCrop()
                 .into(holder.t_image);
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "You clicked" + fooditem.getWord(), Toast.LENGTH_LONG).show();
+            }
+        });
+
 
     }
 
@@ -60,37 +67,26 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
         return foods.size();
     }
 
-    public class Food_item_Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class Food_item_Holder extends RecyclerView.ViewHolder{
 
         public TextView t_name,t_word,t_price;
         public ImageView t_image;
-        Context ctx;
-        List<Fooditem> fo = new ArrayList<Fooditem>();
+        public LinearLayout linearLayout;
 
-        public Food_item_Holder(View itemView, Context c, List<Fooditem> fs) {
+
+        public Food_item_Holder(View itemView) {
             super(itemView);
-            this.ctx = c;
-            this.fo = fs;
-            itemView.setOnClickListener(this);
 
 
             t_name = (TextView)itemView.findViewById(R.id.fname);
             t_image = (ImageView)itemView.findViewById(R.id.img);
             t_price = (TextView)itemView.findViewById(R.id.fprice);
             t_word = (TextView)itemView.findViewById(R.id.fword);
+            linearLayout = (LinearLayout)itemView.findViewById(R.id.linear);
 
         }
 
-        @Override
-        public void onClick(View v) {
 
-            int position = getAdapterPosition();
-            Fooditem food = this.fo.get(position);
-            Intent i = new Intent(this.ctx, OrderActivity.class);
-            i.putExtra("im",food.getUrl());
-            this.ctx.startActivity(i);
-
-        }
     }
 
 }

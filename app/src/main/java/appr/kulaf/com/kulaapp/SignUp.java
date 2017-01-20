@@ -72,7 +72,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                try {
-                   String result = response.getString("result");
+                   String result = response.getString("result").toString();
                    if (result == "200"){
                        Intent intent = new Intent(getApplicationContext(),Login.class);
                        startActivity(intent);
@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"error while parsing "+error.toString(),Toast.LENGTH_LONG).show();
             }
         }){
             @Override
