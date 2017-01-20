@@ -1,5 +1,6 @@
 package appr.kulaf.com.kulaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,14 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.JsonObjectRequest;
 
-import java.util.HashMap;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Hashtable;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
@@ -45,13 +48,14 @@ public class SignUp extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+              startActivity(intent);
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                registerTheUser();
             }
         });
 
@@ -63,30 +67,41 @@ public class SignUp extends AppCompatActivity {
         final  String EDpassword = password.getText().toString().trim();
         final String EDmail = email.getText().toString().trim();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url,
-                new Response.Listener<String>() {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(SignUp.this,response,Toast.LENGTH_LONG).show();
+            public void onResponse(JSONObject response) {
+               try {
+                   String result = response.getString("reslut");
+                   if (result == "200"){
+                       Intent intent = new Intent(getApplicationContext(),Login.class);
+                       startActivity(intent);
+                   }else if(result == "0") {
+                       Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
+                   }
+               }catch (JSONException e){
+                   Toast.makeText(getApplicationContext(),"error while parseing ",Toast.LENGTH_LONG).show();
+               }
+
+
             }
-            },
-                new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(SignUp.this,error.toString(),Toast.LENGTH_LONG).show();
-                    }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"error while parseing ",Toast.LENGTH_LONG).show();
+            }
         }){
             @Override
-            protected Map<String,String>getParams(){
-                Map<String,String>Params = new HashMap<String, String>();
-                Params.put(KEY_EMAIL,EDmail);
-                Params.put(KEY_USERNAME,EDusername);
-                Params.put(KEY_PASSWORD,EDpassword);
-                return Params;
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String, String> params = new Hashtable<String, String>();
+                params.put(KEY_USERNAME, EDusername);
+                params.put(KEY_PASSWORD,EDpassword);
+                params.put(KEY_EMAIL,EDpassword);
+                return params;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        Server.getServer_instance(getApplicationContext()).addRequest(jsonObjectRequest);
 
 
     }
