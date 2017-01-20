@@ -72,7 +72,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                try {
-                   String result = response.getString("result");
+                   String result = response.getString("result").toString();
                    if (result == "200"){
                        Intent intent = new Intent(getApplicationContext(),Login.class);
                        startActivity(intent);
