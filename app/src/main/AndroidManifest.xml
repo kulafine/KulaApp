@@ -18,10 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".FoodActivity" />
-        <activity android:name=".SignUp">
-
-
-        </activity>
+        <activity android:name=".SignUp"></activity>
+        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>
