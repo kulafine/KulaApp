@@ -80,7 +80,7 @@ public class SignUp extends AppCompatActivity {
                        Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
                    }
                }catch (JSONException e){
-                   Toast.makeText(getApplicationContext(),"error while parseing ",Toast.LENGTH_LONG).show();
+                   Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
                }
 
 
@@ -88,7 +88,7 @@ public class SignUp extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error while parseing ",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
             }
         }){
             @Override
