@@ -42,7 +42,12 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
         holder.t_word.setText(fooditem.getWord());
         holder.t_price.setText(fooditem.getPrice());
 
-        Picasso.with(context).load(fooditem.getUrl()).into(holder.t_image);
+        Picasso
+                .with(context)
+                .load(fooditem.getUrl())
+                .resize(380,150)
+                .centerCrop()
+                .into(holder.t_image);
 
 
     }
