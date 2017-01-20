@@ -1,5 +1,6 @@
 package appr.kulaf.com.kulaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,13 +48,14 @@ public class SignUp extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+              startActivity(intent);
             }
         });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                registerTheUser();
             }
         });
 
@@ -71,6 +73,12 @@ public class SignUp extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                try {
                    String result = response.getString("reslut");
+                   if (result == "200"){
+                       Intent intent = new Intent(getApplicationContext(),Login.class);
+                       startActivity(intent);
+                   }else if(result == "0") {
+                       Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
+                   }
                }catch (JSONException e){
                    Toast.makeText(getApplicationContext(),"error while parseing ",Toast.LENGTH_LONG).show();
                }
@@ -87,8 +95,9 @@ public class SignUp extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new Hashtable<String, String>();
-                params.put(KEY_EMAIL, EDmail);
-
+                params.put(KEY_USERNAME, EDusername);
+                params.put(KEY_PASSWORD,EDpassword);
+                params.put(KEY_EMAIL,EDpassword);
                 return params;
             }
         };
