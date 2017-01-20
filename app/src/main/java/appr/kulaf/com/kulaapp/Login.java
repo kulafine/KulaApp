@@ -1,5 +1,7 @@
 package appr.kulaf.com.kulaapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -22,6 +24,8 @@ public class Login extends AppCompatActivity {
     public EditText password;
     public Button login;
     public  String Url;
+    private  String Preference  = "Login";
+    SharedPreferences sharedPreferences ;
 
 
     @Override
@@ -31,6 +35,7 @@ public class Login extends AppCompatActivity {
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.password);
         login = (Button) findViewById(R.id.loginbtn);
+        sharedPreferences = getSharedPreferences(Preference, Context.MODE_PRIVATE);
 
     }
     public void login(){
@@ -42,6 +47,9 @@ public class Login extends AppCompatActivity {
                 String name = response.getString("result");
 
                 if (name == "200"){
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username",name);
+
                     Toast.makeText(getApplicationContext(),"successful loogein",Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(getApplicationContext(),"fail to gin",Toast.LENGTH_LONG).show();
