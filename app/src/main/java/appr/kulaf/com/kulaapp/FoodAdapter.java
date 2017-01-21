@@ -1,17 +1,17 @@
 package appr.kulaf.com.kulaapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +32,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
     public Food_item_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        Food_item_Holder food_item_holder = new Food_item_Holder(v);
+        Food_item_Holder food_item_holder = new Food_item_Holder(v,context, foods);
 
         return food_item_holder;
     }
@@ -52,12 +52,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
                 .centerCrop()
                 .into(holder.t_image);
 
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "You clicked" + fooditem.getWord(), Toast.LENGTH_LONG).show();
-            }
-        });
+
 
 
     }
@@ -67,26 +62,37 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
         return foods.size();
     }
 
-    public class Food_item_Holder extends RecyclerView.ViewHolder{
+    public class Food_item_Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView t_name,t_word,t_price;
         public ImageView t_image;
-        public LinearLayout linearLayout;
+        List<Fooditem> foos = new ArrayList<Fooditem>();
+        Context ct;
 
 
-        public Food_item_Holder(View itemView) {
+        public Food_item_Holder(View itemView, Context c, List<Fooditem> fs) {
             super(itemView);
-
-
+            this.foos = fs;
+            this.ct = c;
+            itemView.setOnClickListener(this);
             t_name = (TextView)itemView.findViewById(R.id.fname);
             t_image = (ImageView)itemView.findViewById(R.id.img);
             t_price = (TextView)itemView.findViewById(R.id.fprice);
             t_word = (TextView)itemView.findViewById(R.id.fword);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.linear);
 
         }
 
 
+        @Override
+        public void onClick(View v) {
+
+            int position = getAdapterPosition();
+            Fooditem fitem = this.foos.get(position);
+            Intent i = new Intent(this.ct, OrderActivity.class);
+            i.putExtra("im",00);
+            this.ct.startActivity(i);
+
+        }
     }
 
 }

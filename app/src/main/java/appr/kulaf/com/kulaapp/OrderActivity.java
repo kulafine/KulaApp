@@ -16,8 +16,6 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
 
         im = (ImageView)findViewById(R.id.it_img);
-        desc = (TextView)findViewById(R.id.it_desc);
-
         im.setImageResource(getIntent().getIntExtra("im",00));
     }
 }
