@@ -32,7 +32,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
     public Food_item_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout,parent,false);
-        Food_item_Holder food_item_holder = new Food_item_Holder(v, context, foods);
+        Food_item_Holder food_item_holder = new Food_item_Holder(v,context, foods);
 
         return food_item_holder;
     }
@@ -40,7 +40,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
     @Override
     public void onBindViewHolder(Food_item_Holder holder, int position) {
 
-        Fooditem fooditem = foods.get(position);
+        final Fooditem fooditem = foods.get(position);
         holder.t_name.setText(fooditem.getName());
         holder.t_word.setText(fooditem.getWord());
         holder.t_price.setText(fooditem.getPrice());
@@ -51,6 +51,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
                 .resize(380,150)
                 .centerCrop()
                 .into(holder.t_image);
+
+
 
 
     }
@@ -64,16 +66,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
 
         public TextView t_name,t_word,t_price;
         public ImageView t_image;
-        Context ctx;
-        List<Fooditem> fo = new ArrayList<Fooditem>();
+        List<Fooditem> foos = new ArrayList<Fooditem>();
+        Context ct;
+
 
         public Food_item_Holder(View itemView, Context c, List<Fooditem> fs) {
             super(itemView);
-            this.ctx = c;
-            this.fo = fs;
+            this.foos = fs;
+            this.ct = c;
             itemView.setOnClickListener(this);
-
-
             t_name = (TextView)itemView.findViewById(R.id.fname);
             t_image = (ImageView)itemView.findViewById(R.id.img);
             t_price = (TextView)itemView.findViewById(R.id.fprice);
@@ -81,14 +82,15 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.Food_item_Hold
 
         }
 
+
         @Override
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            Fooditem food = this.fo.get(position);
-            Intent i = new Intent(this.ctx, OrderActivity.class);
-            i.putExtra("im",food.getUrl());
-            this.ctx.startActivity(i);
+            Fooditem fitem = this.foos.get(position);
+            Intent i = new Intent(this.ct, OrderActivity.class);
+            i.putExtra("im",00);
+            this.ct.startActivity(i);
 
         }
     }
