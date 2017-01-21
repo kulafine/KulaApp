@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -14,7 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Hashtable;
@@ -32,6 +32,7 @@ public class SignUp extends AppCompatActivity {
     private EditText password;
     public Button signup;
     public Button signin;
+    private TextView textView;
 
 
     @Override
@@ -44,6 +45,7 @@ public class SignUp extends AppCompatActivity {
 
         signup = (Button)findViewById(R.id.signup);
         signin = (Button) findViewById(R.id.signin);
+        textView = (TextView)findViewById(R.id.text);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,19 +73,20 @@ public class SignUp extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-               try {
-                   String result = response.getString("result").toString();
-                   if (result == "200"){
-                       Intent intent = new Intent(getApplicationContext(),Login.class);
-                       startActivity(intent);
-                   }else if(result == "0") {
-                       Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
-                   }
-               }catch (JSONException e){
-                   Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
-               }
-
-
+                textView.setText(response.toString());
+//               try {
+//                   String result = response.getString("result").toString();
+//                   if (result == "200"){
+//                       Intent intent = new Intent(getApplicationContext(),Login.class);
+//                       startActivity(intent);
+//                   }else if(result == "0") {
+//                       Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
+//                   }
+//               }catch (JSONException e){
+//                   Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
+//               }
+//
+//
             }
         }, new Response.ErrorListener() {
             @Override

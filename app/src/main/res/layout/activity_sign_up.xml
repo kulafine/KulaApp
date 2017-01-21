@@ -36,5 +36,9 @@
         android:text="login in"
         android:id="@+id/signin"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"/>
 
 </LinearLayout>
