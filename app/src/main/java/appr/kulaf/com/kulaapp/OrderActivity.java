@@ -7,15 +7,19 @@ import android.widget.TextView;
 
 public class OrderActivity extends AppCompatActivity {
 
-    private ImageView im;
-    private TextView desc;
+    private ImageView ims;
+    private TextView words;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
-        im = (ImageView)findViewById(R.id.it_img);
-        im.setImageResource(getIntent().getIntExtra("im",00));
+        ims = (ImageView)findViewById(R.id.it_img);
+        words = (TextView)findViewById(R.id.it_desc);
+
+        ims.setImageResource(getIntent().getIntExtra("im",00));
+        words.setText(getIntent().getStringExtra("name"));
+
     }
 }

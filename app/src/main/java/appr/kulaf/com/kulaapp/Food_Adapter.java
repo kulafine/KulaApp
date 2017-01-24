@@ -42,7 +42,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
         holder.fname.setText(fooditem.getName());
         holder.fprice.setText(fooditem.getPrice());
         holder.fword.setText(fooditem.getWord());
-        holder.descs.add(fooditem.getDesc());
+
 
         Picasso
                 .with(ct)
@@ -62,7 +62,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
 
         ImageView fimage;
         TextView fname,fword,fprice;
-        ArrayList<String> descs = new ArrayList<String>();
+        ArrayList<Fooditem> foods = new ArrayList<>();
 
 
         public Fooditem_Holder(View itemView) {
@@ -73,8 +73,9 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
             fword = (TextView)itemView.findViewById(R.id.fword);
             fprice = (TextView)itemView.findViewById(R.id.fprice);
 
-
         }
+
+
     }
 
 
