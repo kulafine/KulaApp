@@ -37,6 +37,7 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
 
         if (v != null && mListener != null && gestureDetector.onTouchEvent(e)){
             mListener.OnitemClick(v, rv.getChildAdapterPosition(v));
+            return true;
 
         }
 

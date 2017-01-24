@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class OrderActivity extends AppCompatActivity {
 
     private ImageView ims;
@@ -18,8 +20,10 @@ public class OrderActivity extends AppCompatActivity {
         ims = (ImageView)findViewById(R.id.it_img);
         words = (TextView)findViewById(R.id.it_desc);
 
-        ims.setImageResource(getIntent().getIntExtra("im",00));
-        words.setText(getIntent().getStringExtra("name"));
+        Picasso.with(getApplicationContext())
+               .load(getIntent().getStringExtra("im"))
+               .resize(360,200).into(ims);
+        words.setText(getIntent().getStringExtra("desc"));
 
     }
 }
