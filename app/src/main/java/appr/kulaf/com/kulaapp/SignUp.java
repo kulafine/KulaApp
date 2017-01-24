@@ -9,20 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Hashtable;
-import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String Url ="http://192.168.40.215/kulafine/scripts/register.php";
+    private static final String Url ="http://kongosms.com/android/register.php";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_EMAIL= "email";
     public static final String KEY_PASSWORD="password";
@@ -68,9 +65,17 @@ public class SignUp extends AppCompatActivity {
         final String EDusername = username.getText().toString().trim();
         final  String EDpassword = password.getText().toString().trim();
         final String EDmail = email.getText().toString().trim();
+       JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(KEY_USERNAME,EDusername);
+            jsonObject.put(KEY_PASSWORD,EDpassword);
+            jsonObject.put(KEY_EMAIL,EDmail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 textView.setText(response.toString());
@@ -92,19 +97,20 @@ public class SignUp extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"error while parsing "+error,Toast.LENGTH_LONG).show();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String, String> params = new Hashtable<String, String>();
-                params.put(KEY_USERNAME, EDusername);
-                params.put(KEY_PASSWORD,EDpassword);
-                params.put(KEY_EMAIL,EDmail);
-                return params;
-            }
-        };
+       });
+// {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put(KEY_USERNAME, EDusername);
+//                params.put(KEY_PASSWORD,EDpassword);
+//                params.put(KEY_EMAIL,EDmail);
+//                return params;
+//            }
+//        };
         Server.getServer_instance(getApplicationContext()).addRequest(jsonObjectRequest);
 
 
