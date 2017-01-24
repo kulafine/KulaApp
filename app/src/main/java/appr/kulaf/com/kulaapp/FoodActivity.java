@@ -1,7 +1,6 @@
 package appr.kulaf.com.kulaapp;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -78,11 +77,7 @@ public class FoodActivity extends AppCompatActivity {
                     recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), new RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void OnitemClick(View view, int position) {
-                            Fooditem food = fooditems.get(position);
-                            Intent i = new Intent(getApplicationContext(), OrderActivity.class);
-                            i.putExtra("name",food.getName());
-                            i.putExtra("im",food.getImage_url());
-                            startActivity(i);
+
                         }
                     }));
 

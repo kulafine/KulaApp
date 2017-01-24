@@ -48,7 +48,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
                 .with(ct)
                 .load(fooditem.getImage_url())
                 .centerCrop()
-                .resize(380,180)
+                .resize(400,180)
                 .placeholder(R.mipmap.images)
                 .into(holder.fimage);
     }
@@ -62,7 +62,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
 
         ImageView fimage;
         TextView fname,fword,fprice;
-        ArrayList<Fooditem> foods = new ArrayList<>();
+
 
 
         public Fooditem_Holder(View itemView) {
