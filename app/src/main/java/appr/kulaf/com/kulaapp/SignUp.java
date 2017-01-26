@@ -102,7 +102,7 @@ public class SignUp extends AppCompatActivity {
        });
 // {
 //            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
+//            protected Map<String, String> getHeaders() throws AuthFailureError {
 //
 //                Map<String, String> params = new HashMap<String, String>();
 //                params.put(KEY_USERNAME, EDusername);
