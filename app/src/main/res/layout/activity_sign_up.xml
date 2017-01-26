@@ -14,7 +14,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginTop="100dp"
         android:padding="30dp">
-        <android.support.design.widget.TextInputLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -22,17 +22,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mail"
-            android:padding="10dp"
+            android:padding="15dp"
             android:background="@drawable/edit_underline"
 
             android:hint=" Enter your full name"
             />
-        </android.support.design.widget.TextInputLayout>
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter your phone"
-           android:padding="10dp"
+           android:padding="15dp"
             android:id="@+id/username"
             android:background="@drawable/edit_underline"
             />
@@ -44,7 +44,7 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:background="@drawable/edit_underline"
-            android:padding="10dp"/>
+            android:padding="15dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
