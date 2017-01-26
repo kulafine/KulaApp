@@ -17,15 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mail"
+            android:padding="10dp"
 
-          android:hint=""
-            android:gravity="center"/>
+          android:hint=" Enter your full name"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/username"
             android:text=" username"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:background="@drawable/edit_underline"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
