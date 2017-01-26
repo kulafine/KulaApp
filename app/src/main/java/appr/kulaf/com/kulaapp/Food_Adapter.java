@@ -41,14 +41,11 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
         Fooditem fooditem = fooditems.get(position);
         holder.fname.setText(fooditem.getName());
         holder.fprice.setText(fooditem.getPrice());
-        holder.fword.setText(fooditem.getWord());
-
-
         Picasso
                 .with(ct)
                 .load(fooditem.getImage_url())
                 .centerCrop()
-                .resize(400,180)
+                .resize(100,100)
                 .placeholder(R.mipmap.images)
                 .into(holder.fimage);
     }
@@ -61,7 +58,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
     public static class Fooditem_Holder extends RecyclerView.ViewHolder{
 
         ImageView fimage;
-        TextView fname,fword,fprice;
+        TextView fname,fprice;
 
 
 
@@ -70,7 +67,6 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
 
             fimage = (ImageView) itemView.findViewById(R.id.img);
             fname = (TextView)itemView.findViewById(R.id.fname);
-            fword = (TextView)itemView.findViewById(R.id.fword);
             fprice = (TextView)itemView.findViewById(R.id.fprice);
 
         }
