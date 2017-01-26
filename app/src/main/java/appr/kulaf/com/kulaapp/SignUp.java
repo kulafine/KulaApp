@@ -41,7 +41,6 @@ public class SignUp extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
 
         signup = (Button)findViewById(R.id.signup);
-        signin = (Button) findViewById(R.id.signin);
         textView = (TextView)findViewById(R.id.text);
 
         signin.setOnClickListener(new View.OnClickListener() {

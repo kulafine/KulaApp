@@ -12,41 +12,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="100dp"
+        android:padding="30dp">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/mail"
             android:padding="10dp"
+            android:background="@drawable/edit_underline"
 
-          android:hint=" Enter your full name"
+            android:hint=" Enter your full name"
             />
+        </android.support.design.widget.TextInputLayout>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Enter your phone"
+           android:padding="10dp"
             android:id="@+id/username"
-            android:text=" username"
-            android:gravity="center"
             android:background="@drawable/edit_underline"
             />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/password"
-            android:text="password"
-            android:gravity="center"/>
+
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:background="@drawable/edit_underline"
+            android:padding="10dp"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="signup"
+            android:background="@color/colorPrimary"
             android:id="@+id/signup"
+          android:layout_marginTop="20dp"
+            android:textColor="@color/white"
             />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="login in"
-            android:id="@+id/signin"
-            />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
