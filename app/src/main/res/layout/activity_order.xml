@@ -12,18 +12,21 @@
 
     <ImageView
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/it_img"
         android:scaleType="centerCrop"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="360dp"
+        android:layout_height="120dp"
         android:layout_below="@+id/it_img"
         android:text="Description"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/it_desc"/>
+        android:id="@+id/it_desc"
+        android:layout_alignLeft="@+id/it_img"
+        android:layout_alignStart="@+id/it_img"
+        android:layout_alignRight="@+id/it_img"
+        android:layout_alignEnd="@+id/it_img" />
 
     <Button
         android:layout_width="200dp"
@@ -31,6 +34,7 @@
         android:text="Order"
         android:layout_below="@+id/it_desc"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:id="@+id/btn"/>
 
 </RelativeLayout>

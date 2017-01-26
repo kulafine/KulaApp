@@ -12,7 +12,7 @@ public class Fooditem {
     private String word;
     private String desc;
 
-    public Fooditem(String image_url, String name, String price, String word, String desc) {
+    public Fooditem(String name, String image_url, String word, String price, String desc) {
         this.image_url = image_url;
         this.name = name;
         this.price = price;

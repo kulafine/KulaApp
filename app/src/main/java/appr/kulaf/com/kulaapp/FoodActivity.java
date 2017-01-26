@@ -39,6 +39,8 @@ public class FoodActivity extends AppCompatActivity {
 
         fooditems = new ArrayList<>();
 
+
+
         loadMenu();
 
     }
@@ -63,10 +65,10 @@ public class FoodActivity extends AppCompatActivity {
                     {
                         JSONObject o = jsonArray.getJSONObject(i);
                         Fooditem fooditem = new Fooditem(
-                                o.getString("image"),
                                 o.getString("name"),
-                                o.getString("price"),
+                                o.getString("image"),
                                 o.getString("word"),
+                                o.getString("price"),
                                 o.getString("desc")
                         );
 
@@ -84,10 +86,13 @@ public class FoodActivity extends AppCompatActivity {
                             Intent i = new Intent(getApplicationContext(), OrderActivity.class);
                             i.putExtra("im",food.getImage_url());
                             i.putExtra("desc",food.getDesc());
+                            i.putExtra("name",food.getName());
+                            i.putExtra("price",food.getPrice());
                             startActivity(i);
 
                         }
                     }));
+
 
 
                 } catch (JSONException e) {
