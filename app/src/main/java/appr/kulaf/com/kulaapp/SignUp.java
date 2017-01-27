@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,6 +29,7 @@ public class SignUp extends AppCompatActivity {
     public Button signin;
     private TextView textView;
     Context c = this;
+    ArrayAdapter<String> itemsAdapter;
 
 
 
@@ -52,9 +55,25 @@ public class SignUp extends AppCompatActivity {
                 dialog.setView(mview);
                 final EditText userInputDialogEditText = (EditText) mview.findViewById(R.id.userInputDialog);
                 final ListView countryList = (ListView)mview.findViewById(R.id.list) ;
-                ArrayAdapter<String> itemsAdapter =
+             itemsAdapter =
                         new ArrayAdapter<String>(c, android.R.layout.simple_list_item_1, CountryList.getCountry());
                 countryList.setAdapter(itemsAdapter);
+                userInputDialogEditText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        SignUp.this.itemsAdapter.getFilter().filter(charSequence);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
                 dialog
                         .setCancelable(true);
 
