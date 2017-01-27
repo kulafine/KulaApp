@@ -11,7 +11,8 @@
     </item>
     <!-- Overlap the left, top and right border using background color  -->
     <item
-        android:bottom="2dp"
+
+        android:right="2dp"
 
         >
         <shape android:shape="rectangle">

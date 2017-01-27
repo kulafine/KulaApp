@@ -1,36 +1,69 @@
 package appr.kulaf.com.kulaapp;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String Url ="http://kongosms.com/android/register.php";
+    private static final String Url = "http://kongosms.com/android/register.php";
     public static final String KEY_USERNAME = "username";
-    public static final String KEY_EMAIL= "email";
-    public static final String KEY_PASSWORD="password";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_PASSWORD = "password";
 
-  private   EditText username;
-  private EditText email;
+
+    private EditText username;
+    private EditText email;
     private EditText password;
     public Button signup;
     public Button signin;
     private TextView textView;
+    Context c = this;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
 //        username = (EditText)findViewById(R.id.username);
 //        email = (EditText) findViewById(R.id.mail);
 //        password = (EditText) findViewById(R.id.password);
 //
 //        signup = (Button)findViewById(R.id.signup);
-//        textView = (TextView)findViewById(R.id.text);
+        textView = (TextView)findViewById(R.id.CountryTv);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = LayoutInflater.from(c);
+                View mview = inflater.inflate(R.layout.country_picker_dialog, null);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(c);
+                dialog.setView(mview);
+                final EditText userInputDialogEditText = (EditText) mview.findViewById(R.id.userInputDialog);
+                final ListView countryList = (ListView)mview.findViewById(R.id.list) ;
+                ArrayAdapter<String> itemsAdapter =
+                        new ArrayAdapter<String>(c, android.R.layout.simple_list_item_1, CountryList.getCountry());
+                countryList.setAdapter(itemsAdapter);
+                dialog
+                        .setCancelable(true);
+
+
+                AlertDialog alertDialogAndroid = dialog.create();
+                alertDialogAndroid.show();
+
+            }
+        });
 //
 //        signin.setOnClickListener(new View.OnClickListener() {
 //            @Override
