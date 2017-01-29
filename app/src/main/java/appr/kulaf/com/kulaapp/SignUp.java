@@ -1,6 +1,7 @@
 package appr.kulaf.com.kulaapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,7 @@ public class SignUp extends AppCompatActivity {
     private EditText email;
     private EditText password;
     public Button signup;
-    public Button signin;
+    public TextView login;
     private TextView textView;
     Context c = this;
     ArrayAdapter<String> itemsAdapter;
@@ -45,6 +47,14 @@ public class SignUp extends AppCompatActivity {
 //        password = (EditText) findViewById(R.id.password);
 //
 //        signup = (Button)findViewById(R.id.signup);
+        login = (TextView)findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Login.class);
+                startActivity(intent);
+            }
+        });
         textView = (TextView)findViewById(R.id.CountryTv);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +88,17 @@ public class SignUp extends AppCompatActivity {
                         .setCancelable(true);
 
 
-                AlertDialog alertDialogAndroid = dialog.create();
+                final AlertDialog alertDialogAndroid = dialog.create();
                 alertDialogAndroid.show();
+            countryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String code = CountryList.country[i].toString();
 
+                    textView.setText(code);
+                    alertDialogAndroid.dismiss();
+                }
+            });
             }
         });
 //
