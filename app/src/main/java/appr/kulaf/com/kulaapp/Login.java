@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
         password = (EditText)findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         regiser  =(TextView)findViewById(R.id.registration);
-        //number = countryCode.getText().toString()+telephone.getText().toString();
+
         regiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +58,7 @@ public class Login extends AppCompatActivity {
     public void login(){
         JSONObject jsonObject = new JSONObject();
         JSONObject header  = new JSONObject();
+        number = countryCode.getText().toString() +telephone.getText();
         try {
             header.put("action","login");
             header.put("user",jsonObject);
