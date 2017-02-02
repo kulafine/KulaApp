@@ -124,6 +124,7 @@ public class SignUp extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 registerTheUser();
             }
         });
@@ -136,7 +137,10 @@ public class SignUp extends AppCompatActivity {
         final  String EDpassword = password.getText().toString().trim();
         final String EDphone = number.trim();
        JSONObject jsonObject = new JSONObject();
+        JSONObject header  = new JSONObject();
         try {
+            header.put("action","register");
+            header.put("user",jsonObject);
             jsonObject.put(KEY_USERNAME,EDusername);
             jsonObject.put(KEY_PASSWORD,EDpassword);
             jsonObject.put(KEY_TELEPHONE,EDphone);
@@ -145,24 +149,12 @@ public class SignUp extends AppCompatActivity {
         }
 
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url, jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url, header, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-//               try {
-//                   String result = response.getString("result").toString();
-//                   if (result == "200"){
-//                       Intent intent = new Intent(getApplicationContext(),Login.class);
-//                       startActivity(intent);
-//                   }else if(result == "0") {
-//                       Toast.makeText(getApplicationContext(),"the user exist",Toast.LENGTH_LONG).show();
-//                   }
-//               }catch (JSONException e){
-//                   Toast.makeText(getApplicationContext(),"error while parsing ",Toast.LENGTH_LONG).show();
-//               }
-//                da
-//
-//
+            String reponse = response.toString();
+                Toast.makeText(getApplicationContext(),reponse,Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
