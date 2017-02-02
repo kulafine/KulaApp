@@ -56,7 +56,7 @@ public class SignUp extends AppCompatActivity {
         telephone = (EditText) findViewById(R.id.mobilenumber);
         password = (EditText) findViewById(R.id.password);
         countryCode = (TextView) findViewById(R.id.CountryTv) ;
-        number = countryCode.getText().toString() +telephone.getText().toString();
+       // number = countryCode.getText().toString() +telephone.getText().toString();
         signup = (Button)findViewById(R.id.signup);
         login = (TextView)findViewById(R.id.login);
 
@@ -135,7 +135,7 @@ public class SignUp extends AppCompatActivity {
     private void registerTheUser(){
         final String EDusername = username.getText().toString().trim();
         final  String EDpassword = password.getText().toString().trim();
-        final String EDphone = number.trim();
+        final String EDphone = "00";
        JSONObject jsonObject = new JSONObject();
         JSONObject header  = new JSONObject();
         try {

@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
     public static final String KEY_PASSWORD = "password";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class Login extends AppCompatActivity {
         password = (EditText)findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         regiser  =(TextView)findViewById(R.id.registration);
-        number = countryCode.getText().toString()+telephone.getText().toString();
+        //number = countryCode.getText().toString()+telephone.getText().toString();
         regiser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
