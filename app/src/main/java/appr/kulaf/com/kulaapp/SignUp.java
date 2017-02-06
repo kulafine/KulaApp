@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,7 @@ import org.json.JSONObject;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String Url = "http://kongosms.com/android/register.php";
+    private static final String Url = "http://requestb.in/1e1lkza1";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_TELEPHONE = "telephone";
     public static final String KEY_PASSWORD = "password";
@@ -40,8 +41,12 @@ public class SignUp extends AppCompatActivity {
     public TextView login;
     private TextView countryCode;
     private String  number= null;
+    ProgressBar progressBar;
+
     Context c = this;
     ArrayAdapter<String> itemsAdapter;
+Constant constant;
+
 
 
 
@@ -51,11 +56,11 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        username = (EditText)findViewById(R.id.username) ;
+        countryCode = (TextView)findViewById(R.id.CountryCode) ;
+        telephone = (EditText)findViewById(R.id.number);
+        password = (EditText)findViewById(R.id.passwordS) ;
 
-        username = (EditText)findViewById(R.id.username);
-        telephone = (EditText) findViewById(R.id.mobilenumber);
-        password = (EditText) findViewById(R.id.password);
-        countryCode = (TextView) findViewById(R.id.CountryTv) ;
         signup = (Button)findViewById(R.id.signup);
         login = (TextView)findViewById(R.id.login);
 
@@ -113,18 +118,12 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Login.class);
-              startActivity(intent);
-            }
-        });
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                registerTheUser();
+               registerTheUser();
+              //  Toast.makeText(getApplicationContext(),"the button is ok",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -132,40 +131,35 @@ public class SignUp extends AppCompatActivity {
 
     }
     private void registerTheUser(){
-        final String EDusername = username.getText().toString().trim();
-        final  String EDpassword = password.getText().toString().trim();
-        number = countryCode.getText().toString()+telephone.getText();
-        final String EDphone  = number;
-       JSONObject jsonObject = new JSONObject();
-        JSONObject header  = new JSONObject();
+
+        JSONObject parent  =  new JSONObject();
+        JSONObject inner = new JSONObject();
+        number = countryCode.getText().toString()+telephone.getText().toString().toString();
         try {
-            header.put("action","register");
-            header.put("user",jsonObject);
-            jsonObject.put(KEY_USERNAME,EDusername);
-            jsonObject.put(KEY_PASSWORD,EDpassword);
-            jsonObject.put(KEY_TELEPHONE,EDphone);
+            parent.put("action","registration");
+            parent.put("user",inner);
+            inner.put(KEY_USERNAME,username.getText().toString().trim());
+            inner.put(KEY_PASSWORD,password.getText().toString().trim());
+            inner.put(KEY_TELEPHONE,number.trim());
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,Url, header, new Response.Listener<JSONObject>() {
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST,Constant.BaseURL, parent, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-            String reponse = response.toString();
-                Toast.makeText(getApplicationContext(),reponse,Toast.LENGTH_LONG).show();
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"error while parsing "+error,Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(), "the button is NOT ok", Toast.LENGTH_LONG).show();
             }
-       });
-
-
-        Server.getServer_instance(getApplicationContext()).addRequest(jsonObjectRequest);
-
+        });
+        Server.getServer_instance(getApplicationContext()).addRequest(objectRequest);
 
     }
 }

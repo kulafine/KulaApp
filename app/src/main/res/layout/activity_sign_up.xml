@@ -21,7 +21,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/mail"
+            android:id="@+id/username"
             android:padding="15dp"
             android:background="@drawable/edit_underline"
             android:hint=" Enter your full name"
@@ -37,7 +37,7 @@
                android:background="@drawable/edit_underline"
                android:text="+243"
                android:padding="10dp"
-               android:id="@+id/CountryTv"
+               android:id="@+id/CountryCode"
                android:layout_marginTop="1dp"
 
                />
@@ -61,7 +61,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password"
+            android:id="@+id/passwordS"
 
             android:hint="Password"
             android:inputType="textPassword"

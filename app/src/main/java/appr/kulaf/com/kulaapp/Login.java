@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity {
     public EditText password;
     public Button login;
     public TextView regiser;
-    public String number,Url = "google.com";
+    public String number,Url = "http://requestb.in/1e1lkza1";
     public static final String KEY_TELEPHONE = "telephone";
     public static final String KEY_PASSWORD = "password";
 
@@ -73,8 +73,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
 
-                String reponse = response.toString();
-                Toast.makeText(getApplicationContext(),reponse,Toast.LENGTH_LONG).show();
+
+                Toast.makeText(getApplicationContext(),response.toString(),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
