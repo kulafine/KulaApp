@@ -1,5 +1,6 @@
 package appr.kulaf.com.kulaapp;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,8 +29,8 @@ import org.json.JSONObject;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String Url = "http://requestb.in/1e1lkza1";
-    public static final String KEY_USERNAME = "username";
+
+    public static final String KEY_USERNAME = "name";
     public static final String KEY_TELEPHONE = "telephone";
     public static final String KEY_PASSWORD = "password";
 
@@ -109,9 +110,7 @@ Constant constant;
             countryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String code = CountryList.country[i].toString();
-
-                   countryCode.setText(code);
+                    String code = CountryList.code[i].toString();
                     alertDialogAndroid.dismiss();
                 }
             });
@@ -136,7 +135,7 @@ Constant constant;
         JSONObject inner = new JSONObject();
         number = countryCode.getText().toString()+telephone.getText().toString().toString();
         try {
-            parent.put("action","registration");
+            parent.put("operation","register");
             parent.put("user",inner);
             inner.put(KEY_USERNAME,username.getText().toString().trim());
             inner.put(KEY_PASSWORD,password.getText().toString().trim());
@@ -146,17 +145,31 @@ Constant constant;
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Registering...");
+        dialog.show();
+
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST,Constant.BaseURL, parent, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                try {
+                    dialog.dismiss();
+                    Constant.Result = response.getString(Constant.Response);
+
+                }catch (JSONException E){
+
+                }
+                Toast.makeText(getApplicationContext(),Constant.Result,Toast.LENGTH_LONG).show();
 
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
+                Toast.makeText(getApplicationContext(),"errror"+error,Toast.LENGTH_LONG).show();
 
-                Toast.makeText(getApplicationContext(), "the button is NOT ok", Toast.LENGTH_LONG).show();
             }
         });
         Server.getServer_instance(getApplicationContext()).addRequest(objectRequest);
