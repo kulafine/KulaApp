@@ -46,6 +46,7 @@ public class Food_Adapter extends RecyclerView.Adapter<Food_Adapter.Fooditem_Hol
                 .load(fooditem.getImage_url())
                 .centerCrop()
                 .resize(100,100)
+                .fit()
                 .placeholder(R.mipmap.images)
                 .into(holder.fimage);
     }

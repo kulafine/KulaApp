@@ -3,8 +3,8 @@ package appr.kulaf.com.kulaapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
@@ -20,12 +20,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class FoodActivity extends AppCompatActivity {
+public class FoodActivity extends ActionBarActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     private static final String url = "http://192.168.40.215/kulafine/scripts/loadJson.php";
     private ArrayList<Fooditem> fooditems;
+    private GridLayoutManager grid;
 
 
     @Override
@@ -35,12 +36,11 @@ public class FoodActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        grid = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(grid);
+
 
         fooditems = new ArrayList<>();
-
-
-
         loadMenu();
 
     }
