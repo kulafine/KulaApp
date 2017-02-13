@@ -1,39 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
+    android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
- android:orientation="vertical"
-    tools:context="appr.kulaf.com.kulaapp.Login">
-    <EditText
+    android:orientation="vertical"
+    tools:context="appr.kulaf.com.kulaapp.SignUp">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="enter your mail"
-        android:gravity="center"
-        android:id="@+id/mail"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="password"
-        android:gravity="center"
-        android:id="@+id/password"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="login"
-        android:id="@+id/loginbtn"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset Password"
-        android:id="@+id/ResetBtn"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="forgot password?"
-        android:id="@+id/btnForgot"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:padding="20dp">
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_underline"
+                    android:text="+243"
+                    android:padding="10dp"
+                    android:id="@+id/CountryTv"
+                    android:layout_marginTop="1dp"
+
+                    />
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="20dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter your phone"
+                    android:id="@+id/mobilenumber"
+                    android:padding="10dp"
+                    android:background="@drawable/edit_underline"
+                    />
+
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:background="@drawable/edit_underline"
+                android:padding="15dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="login"
+                android:background="@color/colorPrimary"
+                android:id="@+id/login"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="15dp"
+                android:text=" forgotpassword ?"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:textSize="15dp"
+                android:id="@+id/registration"
+                android:text="Not registered? Register now"/>
+        </LinearLayout>
 
 
-</LinearLayout>
+    </RelativeLayout>
+
+
+
+</ScrollView>
